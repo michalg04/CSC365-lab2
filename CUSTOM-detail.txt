@@ -1,0 +1,17 @@
+Michal Golovanevsky, CSSC 365, Lab 2
+-----------------------------------------
+(a) Source of the data (URL, name of the person or organization who produced the data):
+https://www.kaggle.com/usernam3/shopify-app-store, uploaded to Kaggle by Stanislav Dobrovolschii.
+
+Note that the data I ended up using was simplified from the original data. I deleted columns I thought were not very useful and only kept the information that was needed for the table to make sense. 
+-----------------------------------------
+(b) A brief description of the tables you defined and the relationships between them.
+I created a table called apps, categories, pricing_plans, and plan_features. Apps contains the url of the app, the title, who developed the app, the rating the app received, and how many reviews the app has. The categories table has the app_url which is connected to apps' url, and a category which is the category the app is in. Note an app (one url) can have multiple categories, thus the primary key must be both app_url and category. Pricing_plans has an id of the pricing plan, app_url which is connected to apps' url, title of the kind of plan (not related to the title of the app) and the price (which is not numerical, rather a description of the per month payment). The id is unique. Finally, plan_features includes pricing_plan_id which is connected to pricing_plans' id, app_url which is connected to the apps' url, and feature which is being planned to be added. 
+-----------------------------------------
+(c) Any mapping challenges you may have encountered.
+I started with subsetting apps into only 20 apps, then used those urls to only find categories for those 20 apps, and to only find pricing plans and feature plans for those 20 apps. I ended up with more than 100 entries since one app can have multiple categories, feature plans etc. Thus, in every step, I had to make sure I was only using data that exists for those apps and that I was mapping between tables correctly. Since there were duplications in some categories I had to make sure that I chose my primary keys correctly.
+-----------------------------------------
+(d) Three non-trivial questions you might ask based on the dataset you chose
+1) What is the pricing plan for a certain app given a certain planned feature?
+2) Which category of apps is most common?
+3) Which planned feature will be most expensive?

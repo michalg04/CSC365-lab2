@@ -1,0 +1,29 @@
+DROP TABLE IF EXISTS flights;
+DROP TABLE IF EXISTS airports100;
+DROP TABLE IF EXISTS airlines;
+
+CREATE TABLE airlines (
+Id INTEGER PRIMARY KEY,
+Airline VARCHAR(50) NOT NULL,
+Abbreviation VARCHAR(20) NOT NULL,
+Country VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE airports100 (
+City VARCHAR(20) NOT NULL,
+AirportCode CHAR(3) PRIMARY KEY,
+AirportName VARCHAR(50) NOT NULL,
+Country VARCHAR(20) NOT NULL,
+CountryAbbrev CHAR(3) NOT NULL
+);
+
+CREATE TABLE flights(
+Airline INTEGER NOT NULL,
+FlightNo INTEGER NOT NULL,
+SourceAirport CHAR(3) NOT NULL,
+DestAirport CHAR(3) NOT NULL,
+FOREIGN KEY (SourceAirport) REFERENCES airports100(AirportCode),
+FOREIGN KEY (DestAirport) REFERENCES airports100(AirportCode),
+FOREIGN KEY (Airline) REFERENCES airlines(Id),
+PRIMARY KEY (Airline, FlightNo)
+);
